@@ -2,7 +2,6 @@
 
 const userLoggedIn = () => ({
   type: 'USER_LOGGED_IN',
-  errorMessage: ''
 });
 
 const sendErrorMessage = (message) => ({
@@ -11,9 +10,10 @@ const sendErrorMessage = (message) => ({
 });
 
 export const handleLogin = (email, password) => {
-  dispatch => {
+  console.log(email, password);
+  return dispatch => {
     fetch('https://api.shipments.test-y-sbm.com/login', {
-      method: postMessage,
+      method: 'POST',
       headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
       body: JSON.stringify({
         email: email,
@@ -29,8 +29,8 @@ export const handleLogin = (email, password) => {
       }
     })
     .then(data => {
-      localStorage.setItem('token', data.token);
-      dispatch(userLoggedIn());
+      console.log('Success', data.data[0].token)
+      dispatch(userLoggedIn({token: data[0].token}));
     })
   }
 }
