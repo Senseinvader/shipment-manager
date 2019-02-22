@@ -1,14 +1,3 @@
-
-
-const userLoggedIn = () => ({
-  type: 'USER_LOGGED_IN',
-});
-
-const sendErrorMessage = (message) => ({
-  type: 'ERROR_MESSAGE_SHOWN',
-  errorMessage: message
-});
-
 export const handleLogin = (email, password) => {
   console.log(email, password);
   return dispatch => {
@@ -30,7 +19,17 @@ export const handleLogin = (email, password) => {
     })
     .then(data => {
       console.log('Success', data.data[0].token)
-      dispatch(userLoggedIn({token: data[0].token}));
+      dispatch(userLoggedIn(data.data[0].token));
     })
   }
-}
+};
+
+const userLoggedIn = (token) => ({
+  type: 'USER_LOGGED_IN',
+  token: token
+});
+
+const sendErrorMessage = (message) => ({
+  type: 'ERROR_MESSAGE_SHOWN',
+  errorMessage: message
+});

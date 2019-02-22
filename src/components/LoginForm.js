@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { handleLogin } from '../actions/loginActions';
+import { Redirect } from 'react-router-dom';
 
 class LoginForm extends Component {
   constructor() {
@@ -14,7 +15,12 @@ class LoginForm extends Component {
   }
 
   render() {
-    const {email, password} = this.props;
+    const {email, password, isLoggedIn} = this.props;
+
+    if(isLoggedIn) {
+      return (<Redirect to='admin'/>)
+    }
+
     return (
       <div className='login-container'>
         <div className="login-header">
@@ -48,7 +54,8 @@ class LoginForm extends Component {
 const mapStateToProps = (state) => {
   return {
     email: state.loginReducer.email,
-    password: state.loginReducer.password
+    password: state.loginReducer.password,
+    isLoggedIn: state.loginReducer.isLoggedIn
   }
 };
 

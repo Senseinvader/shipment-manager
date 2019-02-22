@@ -12,7 +12,7 @@ const initState = {
 const loginReducer = (state=initState, action) => {
   switch(action.type) {
     case 'USER_LOGGED_IN': 
-      return {...state, isLoggedIn: true, errorMessage: action.errorMessage};
+      return {...state, isLoggedIn: true, errorMessage: '', token: action.token};
     case 'USER_LOGGED_OUT': 
       return {...state, isLoggedIn: false, errorMessage: '', token: action.token};
     case 'EMAIL_CHANGED':
