@@ -1,8 +1,14 @@
 
 
 const userLoggedIn = () => ({
-  type: 'USER_LOGGED_IN'
-})
+  type: 'USER_LOGGED_IN',
+  errorMessage: ''
+});
+
+const sendErrorMessage = (message) => ({
+  type: 'ERROR_MESSAGE_SHOWN',
+  errorMessage: message
+});
 
 export const handleLogin = (email, password) => {
   dispatch => {
@@ -16,7 +22,8 @@ export const handleLogin = (email, password) => {
     })
     .then(response => {
       if(response.status !== 200) {
-        console.log('Wrong cred')
+        console.log('Wrong cred');
+        dispatch(sendErrorMessage('Wrong credentials!'));
       } else {
         return response.json();
       }
