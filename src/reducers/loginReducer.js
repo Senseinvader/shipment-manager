@@ -5,8 +5,7 @@ const initState = {
   isLoggedIn: false,
   errorMessage: '',
   token: '',
-  inProgress: false,
-  redirectTo: null
+  inProgress: false
 }
 
 const loginReducer = (state=initState, action) => {
@@ -14,7 +13,7 @@ const loginReducer = (state=initState, action) => {
     case 'USER_LOGGED_IN': 
       return {...state, isLoggedIn: true, errorMessage: '', token: action.token};
     case 'USER_LOGGED_OUT': 
-      return {...state, isLoggedIn: false, errorMessage: '', token: action.token};
+      return {...state, isLoggedIn: false, errorMessage: '', token: '', email: '', password: ''};
     case 'EMAIL_CHANGED':
       return {...state, email: action.email};
     case 'PASSWORD_CHANGED':
