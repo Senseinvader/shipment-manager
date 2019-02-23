@@ -18,7 +18,9 @@ const loginReducer = (state=initState, action) => {
     case 'EMAIL_CHANGED':
       return {...state, email: action.email};
     case 'PASSWORD_CHANGED':
-      return {...state, password: action.password}
+      return {...state, password: action.password};
+    case 'ERROR_MESSAGE_SHOWN': 
+      return {...state, errorMessage: action.errorMessage};
     default: 
       return state;
   }
