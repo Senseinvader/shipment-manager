@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import LoginForm from './components/LoginForm';
-import { BrowserRouter, Route } from 'react-router-dom';
+import NavBar from './components/NavBar';
+import Cabinet from './components/Cabinet';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
+      <Router>
         <div className="App">
-          <header className="App-header">
-            Hi, manager!
-          </header>
+          <NavBar/>
           <Route exact path='/' component={LoginForm}/>
+          <Route exact path='/admin' component={Cabinet}/>
         </div>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
