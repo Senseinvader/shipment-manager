@@ -14,8 +14,8 @@ export const fetchShipments = () => {
       return results.json();
     })
     .then(data => {
-      console.log(data);
-      dispatch({type: 'SHIPMENTS_FETCHED', shipments: data})
+      console.log(data.data.shipments);
+      dispatch({type: 'SHIPMENTS_FETCHED', shipments: data.data.shipments})
     })
     .catch(err => console.log(err.message));
   }
