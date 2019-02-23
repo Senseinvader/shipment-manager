@@ -5,18 +5,24 @@ import {fetchShipments} from '../actions/shipmentActions';
 class SideBar extends Component {
 
   componentDidMount = () => {
-    const {fetchShipments, shipments} = this.props;
+    const {fetchShipments} = this.props;
     fetchShipments();
-    console.log(shipments);
   }
   
 
   render() {
+    const { shipments } = this.props;
     return (
       <div className='sidebar-container'>
         <div className="shipments-container">
           <ul className="ul-flex">
-
+            {(shipments.length > 0) ? shipments.map(shipment => {
+              return (
+                <li className='shipment' key={shipment.id}>{shipment.name}</li>
+              ) 
+            })
+            : ''
+            }
           </ul>
         </div>
         <div className="shipments-button-container">
