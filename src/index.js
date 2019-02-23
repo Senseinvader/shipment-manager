@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import './css/login.css'
+import './css/login.css';
+import './css/navBar.css';
 import App from './App';
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'

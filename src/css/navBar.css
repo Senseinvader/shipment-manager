@@ -1,0 +1,37 @@
+.nav-container {
+  height: 70px;
+  width: 100%;
+  border-bottom:1px solid rgb(123, 156, 255);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: "Roboto",  sans-serif;
+  font-size: 40px;
+  margin-left: 20px;
+  color: rgb(61, 88, 168);
+}
+.logout-button {
+  max-width: 100px;
+  height: 50px;
+  background-color: rgb(123, 156, 255);
+  padding: 14px 20px;
+  border: 0;
+  cursor: pointer;
+  flex:1;
+  margin-right: 20px;
+}
+.logout-button a {
+  color: white;
+}
+.logout-button a:link {
+  text-decoration: none;
+}
+.logout-button:hover {
+  background-color: rgb(92, 132, 253);
+}
+.logout-button:active {
+  transform: translateY(1px);
+}
