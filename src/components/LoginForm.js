@@ -27,27 +27,33 @@ class LoginForm extends Component {
         <div className="login-header">
           <h1>Sign In</h1>
         </div>
-        <div className="form-container">
           <form onSubmit={this.submitForm(email, password)}>
-            <input 
-              type="text" 
-              className='form-input'
-              placeholder='Email'
-              value={email}
-              onChange={this.onChangeEmail}/>
-            <input 
-              type="password" 
-              className='form-input'
-              placeholder='Password'
-              value={password}
-              onChange={this.onChangePassword}/>
-            <button
-              className='submit-button'
-              type='submit'
-            >LOG IN</button>
+            <ul className='flex-form'>
+              <li>
+                <input 
+                  type="text" 
+                  className='form-input'
+                  placeholder='Email'
+                  value={email}
+                  onChange={this.onChangeEmail}/>
+              </li>
+              <li>
+                <input 
+                  type="password" 
+                  className='form-input'
+                  placeholder='Password'
+                  value={password}
+                  onChange={this.onChangePassword}/>
+              </li>
+              <li>
+                <button
+                  className='submit-button'
+                  type='submit'
+                >LOG IN</button>
+            </li>
+            </ul>
           </form>
         </div>
-      </div>
     )
   }
 }
