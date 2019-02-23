@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { handleLogin } from '../actions/loginActions';
+import { handleLogin, sendErrorMessage } from '../actions/loginActions';
 import { Redirect } from 'react-router-dom';
 
 class LoginForm extends Component {
@@ -8,8 +8,23 @@ class LoginForm extends Component {
     super();
     this.onChangeEmail = e => this.props.onChangeEmail(e.target.value);
     this.onChangePassword = e => this.props.onChangePassword(e.target.value);
+    this.sendErrorMessage = message => this.props.sendErrorMessage(message);
     this.submitForm = (email, password) => e => {
       e.preventDefault();
+      this.props.submitForm(email, password);
+    }
+  }
+
+  validateForm() {
+    const {email, password} = this.props;
+    const regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!email) {
+      this.sendErrorMessage('Please provide an email address.');
+    } else if (!regex.test(email)) {
+      this.sendErrorMessage('That is not a valid email.');
+    } else if (!password) {
+      this.sendErrorMessage('You forgot about password');
+    } else {
       this.props.submitForm(email, password);
     }
   }
@@ -62,6 +77,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     submitForm: (email, password) => {dispatch(handleLogin(email, password))},
+    sendErrorMessage: (message) => {dispatch(sendErrorMessage(message))},
     onChangeEmail: (email) => {dispatch({ type: 'EMAIL_CHANGED', email })},
     onChangePassword: (password) => {dispatch({ type: 'PASSWORD_CHANGED', password })}
   }
