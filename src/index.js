@@ -6,6 +6,7 @@ import './css/navBar.css';
 import './css/cabinet.css';
 import './css/sideBar.css';
 import './css/commonStyles.css';
+import './css/items.css';
 import App from './App';
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
