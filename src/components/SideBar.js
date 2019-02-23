@@ -1,7 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import {fetchShipments} from '../actions/shipmentActions';
 
 class SideBar extends Component {
+
+  componentDidMount = () => {
+    const {fetchShipments, shipments} = this.props;
+    fetchShipments();
+    console.log(shipments);
+  }
+  
+
   render() {
     return (
       <div className='sidebar-container'>
@@ -10,7 +19,7 @@ class SideBar extends Component {
 
           </ul>
         </div>
-        <div className="shipments-button">
+        <div className="shipments-button-container">
           <button className="add-button">
             ADD SHIPMENT
           </button>
@@ -22,13 +31,13 @@ class SideBar extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    
+    shipments: state.shipmentReducer.shipments
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    fetchShipments: () => {dispatch(fetchShipments())}
   }
 };
 
