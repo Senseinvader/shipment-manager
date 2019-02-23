@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {Redirect} from 'react-router-dom';
+import SideBar from './SideBar';
 
 
 class Cabinet extends Component {
@@ -12,7 +13,8 @@ class Cabinet extends Component {
     }
 
     return (
-      <div>
+      <div className='cabinet-container'>
+        <SideBar/>
         <h1>Let's get down to work!</h1>
       </div>
     )
