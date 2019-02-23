@@ -14,19 +14,17 @@ class SideBar extends Component {
     const { shipments } = this.props;
     return (
       <div className='sidebar-container'>
-        <div className="shipments-container">
-          <ul className="ul-flex">
-            {(shipments.length > 0) ? shipments.map(shipment => {
-              return (
-                <li className='shipment' key={shipment.id}>{shipment.name}</li>
-              ) 
-            })
-            : ''
-            }
-          </ul>
-        </div>
+        <ul className="ul-flex">
+          {(shipments.length > 0) ? shipments.map(shipment => {
+            return (
+              <li className='shipment' key={shipment.id}>{shipment.name}</li>
+            ) 
+          })
+          : ''
+          }
+        </ul>
         <div className="shipments-button-container">
-          <button className="add-button">
+          <button className="submit-button wide-button">
             ADD SHIPMENT
           </button>
         </div>

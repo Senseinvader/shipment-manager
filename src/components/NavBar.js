@@ -10,7 +10,7 @@ class NavBar extends Component {
     let logoutButton;
 
     if(isLoggedIn) {
-      logoutButton = <button className='logout-button' onClick={onLogout}><NavLink to='/'>LOG OUT</NavLink></button>;
+      logoutButton = <button className='logout-button submit-button' onClick={onLogout}><NavLink to='/'>LOG OUT</NavLink></button>;
     } else {
       logoutButton = null;
     }

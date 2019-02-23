@@ -14,13 +14,6 @@
   color: rgb(61, 88, 168);
 }
 .logout-button {
-  max-width: 100px;
-  height: 50px;
-  background-color: rgb(123, 156, 255);
-  padding: 14px 20px;
-  border: 0;
-  cursor: pointer;
-  flex:1;
   margin-right: 20px;
 }
 .logout-button a {

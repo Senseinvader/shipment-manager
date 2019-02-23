@@ -1,5 +1,33 @@
 .sidebar-container {
   display:flex;
-  width: 300px; 
-  border-right: 1px solid rgb(85, 85, 85);
+  flex-direction: column;
+  width: 300px;
+  height: 100%;
+  position: fixed;
+  /* border-right: 1px solid rgb(123, 156, 255); */
+  overflow: auto;
+  background-color: rgb(230, 234, 248);
+}
+.sidebar-container, .shipments-button-container {
+  width: 300px;
+}
+.shipments-button-container {
+  border-top: 1px solid rgb(123, 156, 255);
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+}
+.ul-flex {
+  list-style-type: none;
+  margin-left: -40px;  /* Hack to get rid of unexplainable right margin */
+}
+.ul-flex li {
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px 0 10px 30px;
+}
+.ul-flex li:hover {
+  background-color: rgb(180, 198, 255);
+  cursor: pointer;
 }
