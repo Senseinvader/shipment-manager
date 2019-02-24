@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import {fetchShipments} from '../actions/shipmentActions';
+import {fetchShipments, openModalShipment} from '../actions/shipmentActions';
 
 class SideBar extends Component {
 
@@ -11,7 +11,7 @@ class SideBar extends Component {
   
 
   render() {
-    const { shipments } = this.props;
+    const { shipments, openModalShipment } = this.props;
     return (
       <div className='sidebar-container'>
         <ul className="ul-flex">
@@ -24,7 +24,7 @@ class SideBar extends Component {
           }
         </ul>
         <div className="shipments-button-container">
-          <button className="submit-button wide-button">
+          <button className="submit-button wide-button" onClick={openModalShipment}>
             ADD SHIPMENT
           </button>
         </div>
@@ -41,7 +41,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchShipments: () => {dispatch(fetchShipments())}
+    fetchShipments: () => {dispatch(fetchShipments())},
+    openModalShipment: () => { 
+      console.log('modal open'); 
+      dispatch(openModalShipment()) }
   }
 };
 
