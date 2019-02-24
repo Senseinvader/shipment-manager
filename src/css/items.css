@@ -7,10 +7,24 @@
   min-width: 200px;
   min-width: 300px;
 }
-.items-list-container {
+.items-list-container, .items-buttons-container {
   display: flex;
   position: fixed;
   right: 0;
   width: 70%;
   max-width: calc(100% - 200px);
+  min-width: calc(100% - 300px);
+}
+.items-buttons-container {
+  border-top: 1px solid rgb(123, 156, 255);
+  display: flex;
+  justify-content: space-around;
+  position: fixed;
+  bottom: 0;
+  /* background-color: rgb(230, 234, 248); */
+}
+@media only screen and (max-width: 520px) {
+  .item-button {
+    visibility: hidden;
+  }
 }
