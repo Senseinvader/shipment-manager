@@ -39,7 +39,6 @@ const checkItemNames = (shipments, typeValue) => {
 
 export const fetchShipments = () => {
   return (dispatch, getState) => {
-    console.log(getState().loginReducer.token)
     fetch('https://api.shipments.test-y-sbm.com/shipment', {
       method: 'GET',
       headers: new Headers(
@@ -52,7 +51,6 @@ export const fetchShipments = () => {
       return results.json();
     })
     .then(data => {
-      console.log(data.data.shipments);
       dispatch({type: 'SHIPMENTS_FETCHED', shipments: data.data.shipments})
     })
     .catch(err => console.log(err.message));

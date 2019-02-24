@@ -15,7 +15,6 @@ export const validateForm = (email, password) => {
 }
 
 const handleLogin = (email, password) => {
-  console.log(email, password);
   return dispatch => {
     fetch('https://api.shipments.test-y-sbm.com/login', {
       method: 'POST',
@@ -27,14 +26,12 @@ const handleLogin = (email, password) => {
     })
     .then(response => {
       if(response.status !== 200) {
-        console.log('Wrong cred');
         dispatch(sendErrorMessage('Wrong credentials!'));
       } else {
         return response.json();
       }
     })
     .then(data => {
-      console.log('Success', data.data[0].token)
       dispatch(userLoggedIn(data.data[0].token));
     })
     .catch(err => console.log(err.message));
