@@ -14,14 +14,14 @@ class ModalForm extends Component {
   }
 
   renderForm(typeValue, onChangeFunction, onSubmitFunction) {
-    const {typeToCreate, placeholder} = this.props;
+    const {typeToCreate, placeholder, handleCloseForm} = this.props;
     return (
       <div className='modal-container'>
         <div className="form-container">
           <div className="login-header">
             <h1>Add {typeToCreate}</h1>
           </div>
-          <form onSubmit={onSubmitFunction(typeValue, typeToCreate)} className='flex-add-form'>
+          <form onSubmit={this.submitForm(typeValue, typeToCreate)} className='flex-add-form'>
             <input 
               type="text" 
               className='form-input'
@@ -35,6 +35,7 @@ class ModalForm extends Component {
               >ADD {typeToCreate.toUpperCase()}</button>
               <button
                 className='cancel-button wide-button'
+                onClick={handleCloseForm}
               >CANCEL</button>
             </div>
           </form>
@@ -67,7 +68,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onChangeItemCode: (itemCode) => {dispatch({type:'ON_ITEM_CODE_CHANGED', itemCode})},
     onChangeShipmentName: (shipmentName) => {dispatch({type:'ON_SHIPMENT_NAME_CHANGED', shipmentName})},
-    validateForm: (typeValue, typeToCreate) => {dispatch(validateForm(typeValue, typeToCreate))}
+    validateForm: (typeValue, typeToCreate) => {dispatch(validateForm(typeValue, typeToCreate))},
+    handleCloseForm: () => {dispatch({type: 'MODAL_FORM_CLOSED'})}
   }
 };
 
