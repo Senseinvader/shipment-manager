@@ -10,12 +10,25 @@ export const validateForm = (typeValue, typeToCreate) => {
         dispatch(createShipment(typeValue));
       }
     } else {
-      dispatch(createItem(typeValue));
+      if (!checkItemNames(getState().shipmentReducer.currentShipment, typeValue)) {
+        dispatch(sendErrorMessage('Item with this name already exists in this shipment.'));
+      } else {
+        dispatch(createItem(typeValue));
+      }
     }
   }
 }
 
-const checkShipmentNames = (shipments, typeValue) => {
+const checkShipmentNames = (currentShipment, typeValue) => {
+  for (let item of currentShipment) {
+    if (item.code === typeValue) {
+      return false;
+    }
+  }
+  return true;
+}
+
+const checkItemNames = (shipments, typeValue) => {
   for (let shipment of shipments) {
     if (shipment.name === typeValue) {
       return false;
