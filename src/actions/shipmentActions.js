@@ -40,8 +40,21 @@ export const createShipment = (name, token) => {
   }
 }
 
+export const openModalShipment = () => ({
+  type: 'MODAL_CREATION_FORM_CALLED',
+  typeToCreate: 'shipment',
+  placeholder: 'shipment name'
+});
+
+export const openModalItem = () => ({
+  type: 'MODAL_CREATION_FORM_CALLED',
+  typetoCreate: 'item',
+  placeholder: 'item code'
+});
+
 const createRandomIntegerId = () => {
   let x = Math.floor((Math.random() * 10000000) + 1);
   let y = Math.floor((Math.random() * 10000000) + 10000000);
   return x+y;
 }
+
