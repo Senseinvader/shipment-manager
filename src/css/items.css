@@ -1,3 +1,16 @@
 .items-container {
-  margin-left: 300px;
+  display: flex;
+}
+.gap {
+  display: flex;
+  width: 30%;
+  min-width: 200px;
+  min-width: 300px;
+}
+.items-list-container {
+  display: flex;
+  position: fixed;
+  right: 0;
+  width: 70%;
+  max-width: calc(100% - 200px);
 }

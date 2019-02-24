@@ -4,7 +4,10 @@ class ItemContainer extends Component {
   render() {
     return (
       <div className='items-container'>
-        <h1>Let's get down to work!</h1>        
+        <div className="gap"> </div>
+        <div className="items-list-container">
+          <h1>Let's get down to work!</h1>        
+        </div>
       </div>
     )
   }
