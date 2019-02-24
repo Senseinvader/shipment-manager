@@ -8,13 +8,28 @@
   flex:1;
   color: white;
 }
+.cancel-button {
+  max-width: 100px;
+  height: 50px;
+  background-color: white;
+  padding: 14px 20px;
+  border: 1px solid rgb(123, 156, 255);
+  cursor: pointer;
+  flex:1;
+  color: rgb(123, 156, 255);
+  padding-left: 20px;
+}
 .submit-button:hover {
   background-color: rgb(92, 132, 253);
 }
-.submit-button:active {
+.cancel-button:hover {
+  border: 1px solid rgb(92, 132, 253);
+  color: rgb(92, 132, 253);
+}
+.submit-button:active, .cancel-button:active {
   transform: translateY(1px);
 }
 .wide-button {
-  max-width: 200px;
+  max-width: 160px;
   margin: 20px 0;
 }

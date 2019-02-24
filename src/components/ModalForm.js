@@ -20,17 +20,22 @@ class ModalForm extends Component {
           <div className="login-header">
             <h1>Add {typeToCreate}</h1>
           </div>
-          <form onSubmit={this.submitForm(type)}>
+          <form onSubmit={this.submitForm(type)} className='flex-add-form'>
             <input 
               type="text" 
               className='form-input'
               placeholder={placeholder}
               value={type}
               onChange={onChangeFunction}/>
-            <button
-              className='submit-button'
-              type='submit'
-            >ADD {typeToCreate.toUpperCase()}</button>
+            <div className="flex-button-container">
+              <button
+                className='submit-button wide-button'
+                type='submit'
+              >ADD {typeToCreate.toUpperCase()}</button>
+              <button
+                className='cancel-button wide-button'
+              >CANCEL</button>
+            </div>
           </form>
         </div>
       </div>
