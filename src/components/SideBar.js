@@ -14,15 +14,17 @@ class SideBar extends Component {
     const { shipments, openModalShipment } = this.props;
     return (
       <div className='sidebar-container'>
-        <ul className="ul-flex">
-          {(shipments.length > 0) ? shipments.map(shipment => {
-            return (
-              <li className='shipment' key={shipment.id}>{shipment.name}</li>
-            ) 
-          })
-          : ''
-          }
-        </ul>
+        <div className="shipments-list">
+          <ul className="ul-flex">
+            {(shipments.length > 0) ? shipments.map(shipment => {
+              return (
+                <li className='shipment' key={shipment.id}>{shipment.name}</li>
+              ) 
+            })
+            : ''
+            }
+          </ul>
+        </div>
         <div className="shipments-button-container">
           <button className="submit-button wide-button" onClick={openModalShipment}>
             ADD SHIPMENT

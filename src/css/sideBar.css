@@ -5,11 +5,13 @@
   height: 100%;
   position: fixed;
   /* border-right: 1px solid rgb(123, 156, 255); */
-  overflow: auto;
   background-color: rgb(230, 234, 248);
 }
 .sidebar-container, .shipments-button-container {
-  width: 300px;
+  /* width: 300px; */
+  width: 30%;
+  min-width: 200px;
+  max-width: 300px;
 }
 .shipments-button-container {
   border-top: 1px solid rgb(123, 156, 255);
@@ -30,4 +32,8 @@
 .ul-flex li:hover {
   background-color: rgb(180, 198, 255);
   cursor: pointer;
+}
+.shipments-list {
+  overflow: auto;
+  height: calc(100% - 161px);
 }
