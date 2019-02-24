@@ -20,6 +20,8 @@ const shipmentReducer = (state=initState, action) => {
       return {...state, isModal: false, typeToCreate: '', placeholder: ''};
     case 'SHIPMENT_SELECTED':
       return {...state, currentShipment: action.currentShipment};
+    case 'USER_LOGGED_OUT': 
+      return {...state, isModal: false, typeToCreate: '', placeholder: '', shipmentName: '', itemCode: '', shipments: [], currentShipment: null};
     default:
       return state;
   }

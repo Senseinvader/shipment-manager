@@ -7,6 +7,7 @@ import './css/cabinet.css';
 import './css/sideBar.css';
 import './css/commonStyles.css';
 import './css/items.css';
+import './css/modalForm.css';
 import App from './App';
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'

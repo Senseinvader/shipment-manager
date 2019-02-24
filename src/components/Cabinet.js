@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import SideBar from './SideBar';
 import ItemContainer from './ItemContainer';
+import ModalForm from './ModalForm';
 
 
 class Cabinet extends Component {
@@ -17,6 +18,7 @@ class Cabinet extends Component {
       <div className='cabinet-container'>
         <SideBar/>
         <ItemContainer/>
+        <ModalForm/>
       </div>
     )
   }

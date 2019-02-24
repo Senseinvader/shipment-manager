@@ -37,10 +37,6 @@ class ModalForm extends Component {
     )
   }
 
-  onChangeItemCode() {
-
-  }
-
   render() {
     const {isModal, typeToCreate, shipmentName, itemCode} = this.props;
     if (isModal && typeToCreate==='shipment') {
@@ -57,7 +53,7 @@ const mapStateToProps = (state) => {
     typeToCreate: state.shipmentReducer.typeToCreate,
     placeholder: state.shipmentReducer.placeholder,
     shipmentName: state.shipmentReducer.shipmentName,
-    intemCode: state.shipmentName.intemCode
+    itemCode: state.shipmentReducer.itemCode
   }
 };
 
