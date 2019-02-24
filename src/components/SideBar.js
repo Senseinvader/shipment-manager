@@ -11,14 +11,14 @@ class SideBar extends Component {
   
 
   render() {
-    const { shipments, openModalShipment } = this.props;
+    const { shipments, openModalShipment, setCurrentShipment } = this.props;
     return (
       <div className='sidebar-container'>
         <div className="shipments-list">
           <ul className="ul-flex">
             {(shipments.length > 0) ? shipments.map(shipment => {
               return (
-                <li className='shipment' key={shipment.id}>{shipment.name}</li>
+                <li className='shipment' key={shipment.id} onClick={() => setCurrentShipment(shipment)}>{shipment.name}</li>
               ) 
             })
             : ''
@@ -43,6 +43,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    setCurrentShipment: (shipment) => {dispatch({type: 'SHIPMENT_SELECTED', currentShipment: shipment})},
     fetchShipments: () => {dispatch(fetchShipments())},
     openModalShipment: () => { 
       dispatch(openModalShipment()) }
