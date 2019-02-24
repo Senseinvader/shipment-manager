@@ -43,7 +43,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchShipments: () => {dispatch(fetchShipments())},
     openModalShipment: () => { 
-      console.log('modal open'); 
       dispatch(openModalShipment()) }
   }
 };

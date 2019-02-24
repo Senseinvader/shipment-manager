@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import {validateForm} from '../actions/shipmentActions'; 
 
 class ModalForm extends Component {
   constructor() {
     super();
     this.onChangeItemCode = (e) => this.props.onChangeItemCode(e.target.value);
     this.onChangeShipmentName = (e) => this.props.onChangeShipmentName(e.target.value);
-    this.submitForm = (value) => e => {
+    this.submitForm = (typeValue, typeToCreate) => e => {
       e.preventDefault();
-      this.props.validateForm(value);
+      this.props.validateForm(typeValue, typeToCreate);
     }
   }
 
-  renderForm(type, onChangeFunction) {
+  renderForm(typeValue, onChangeFunction, onSubmitFunction) {
     const {typeToCreate, placeholder} = this.props;
     return (
       <div className='modal-container'>
@@ -20,12 +21,12 @@ class ModalForm extends Component {
           <div className="login-header">
             <h1>Add {typeToCreate}</h1>
           </div>
-          <form onSubmit={this.submitForm(type)} className='flex-add-form'>
+          <form onSubmit={onSubmitFunction(typeValue, typeToCreate)} className='flex-add-form'>
             <input 
               type="text" 
               className='form-input'
               placeholder={placeholder}
-              value={type}
+              value={typeValue}
               onChange={onChangeFunction}/>
             <div className="flex-button-container">
               <button
@@ -66,6 +67,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onChangeItemCode: (itemCode) => {dispatch({type:'ON_ITEM_CODE_CHANGED', itemCode})},
     onChangeShipmentName: (shipmentName) => {dispatch({type:'ON_SHIPMENT_NAME_CHANGED', shipmentName})},
+    validateForm: (typeValue, typeToCreate) => {dispatch(validateForm(typeValue, typeToCreate))}
   }
 };
 
