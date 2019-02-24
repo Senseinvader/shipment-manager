@@ -1,4 +1,29 @@
 
+export const validateForm = (typeValue, typeToCreate) => {
+  return (dispatch, getState) => {
+    if (!typeValue) {
+      dispatch(sendErrorMessage(`Please provide ${typeToCreate} name.`));
+    } else if (typeToCreate==='shipment') {
+      if (!checkShipmentNames(getState().shipmentReducer.shipments, typeValue)) {
+        dispatch(sendErrorMessage('Shipment with this name already exists.'));
+      } else {
+        dispatch(createShipment(typeValue));
+      }
+    } else {
+      dispatch(createItem(typeValue));
+    }
+  }
+}
+
+const checkShipmentNames = (shipments, typeValue) => {
+  for (let shipment of shipments) {
+    if (shipment.name === typeValue) {
+      return false;
+    }
+  }
+  return true;
+}
+
 export const fetchShipments = () => {
   return (dispatch, getState) => {
     console.log(getState().loginReducer.token)
@@ -39,22 +64,16 @@ export const createShipment = (name) => {
     .then(() => {
       let shipment = {id: id, name: name, items: []};
       dispatch({type: 'SHIPMENT_CREATED', shipment: shipment});
+      fetchShipments();
+      dispatch({type: 'MODAL_FORM_CLOSED'});
     })
     .catch(err => console.log(err.message));
   }
 }
 
-export const validateForm = (typeValue, typeToCreate) => {
-  return dispatch => {
-    if (!typeValue) {
-      dispatch(sendErrorMessage(`Please provide ${typeToCreate} name.`));
-    } else if (typeToCreate==='shipment') {
-      dispatch(createShipment(typeValue));
-    } else {
-      dispatch(createItem(typeValue));
-    }
-  }
-}
+const createItem = (code) => {
+  console.log('createItem ', code);
+} 
 
 export const openModalShipment = () => ({
   type: 'MODAL_CREATION_FORM_CALLED',
