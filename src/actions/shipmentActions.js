@@ -23,7 +23,7 @@ export const validateForm = (typeValue, typeToCreate) => {
 
 const checkShipmentNames = (currentShipment, typeValue) => {
   for (let item of currentShipment) {
-    if (item.code === typeValue) {
+    if (item.name === typeValue) {
       return false;
     }
   }
