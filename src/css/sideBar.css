@@ -4,7 +4,6 @@
   width: 300px;
   height: 100%;
   position: fixed;
-  /* border-right: 1px solid rgb(123, 156, 255); */
   background-color: rgb(230, 234, 248);
 }
 .sidebar-container, .shipments-button-container {
@@ -13,7 +12,7 @@
   max-width: 300px;
 }
 .shipments-button-container {
-  border-top: 1px solid rgb(123, 156, 255);
+  border-top: 1px solid #1e88e5;
   display: flex;
   justify-content: center;
   position: fixed;
@@ -30,10 +29,13 @@
   padding: 10px 0 10px 30px;
 }
 .ul-flex li:hover {
-  background-color: rgb(180, 198, 255);
+  background-color: #bbdefb;
   cursor: pointer;
 }
 .shipments-list {
   overflow: auto;
   height: calc(100% - 161px);
+}
+.current {
+  background-color: #90caf9;
 }

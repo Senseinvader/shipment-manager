@@ -29,7 +29,6 @@ class ItemContainer extends Component {
       )
     } else {
       list = currentShipmentItems.map(item => {
-        console.log(item)
         return (
           <li className='item' key={item.id}><Item item={item}/></li>
         ) 

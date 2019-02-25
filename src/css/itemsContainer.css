@@ -20,7 +20,7 @@
   min-width: calc(100% - 300px);
 }
 .items-buttons-container {
-  border-top: 1px solid rgb(123, 156, 255);
+  border-top: 1px solid #1e88e5;
   display: flex;
   justify-content: space-around;
   position: fixed;
@@ -38,7 +38,7 @@
   width: 100%;
 }
 .item:hover {
-  background-color: rgb(180, 198, 255);
+  background-color: #bbdefb;
 }
 .message {
   text-align: center;
