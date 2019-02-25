@@ -46,6 +46,7 @@ class ModalForm extends Component {
 
   render() {
     const {isModal, typeToCreate, shipmentName, itemCode} = this.props;
+    console.log(typeToCreate)
     if (isModal && typeToCreate==='shipment') {
       return this.renderForm(shipmentName, this.onChangeShipmentName);
     } else if (isModal && typeToCreate==='item') {

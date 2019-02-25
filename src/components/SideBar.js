@@ -45,8 +45,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setCurrentShipment: (shipment) => {dispatch({type: 'SHIPMENT_SELECTED', currentShipment: shipment})},
     fetchShipments: () => {dispatch(fetchShipments())},
-    openModalShipment: () => { 
-      dispatch(openModalShipment()) }
+    openModalShipment: () => {dispatch(openModalShipment())}
   }
 };
 
