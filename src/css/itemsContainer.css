@@ -23,6 +23,19 @@
   bottom: 0;
   /* background-color: rgb(230, 234, 248); */
 }
+.flex-items-list {
+  list-style-type: none;
+  width: 100%;
+  margin-right: 50px;
+  
+}
+.item {
+  padding: 15px 20px;
+  width: 100%;
+}
+.item:hover {
+  background-color: rgb(180, 198, 255);
+}
 @media only screen and (max-width: 520px) {
   .item-button {
     visibility: hidden;

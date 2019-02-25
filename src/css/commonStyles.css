@@ -19,6 +19,11 @@
   color: rgb(123, 156, 255);
   padding-left: 20px;
 }
+.low-button {
+  height: 30px;
+  text-align: center;
+  padding: 5px 20px;
+}
 .submit-button:hover {
   background-color: rgb(92, 132, 253);
 }

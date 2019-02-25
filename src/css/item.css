@@ -1,4 +1,11 @@
 .item-container {
   display: flex;
   flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+@media only screen and (max-width: 520px) {
+  .low-button {
+    visibility: hidden;
+  }
 }

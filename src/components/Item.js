@@ -9,7 +9,7 @@ class Item extends Component {
         <div className="item-description">
           {code}
         </div>
-        <button className='submit-button'>DELETE</button>
+        <button className='submit-button low-button'>DELETE</button>
       </div>
     )
   }
