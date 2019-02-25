@@ -8,15 +8,16 @@ const initState = {
   typeToCreate: '',
   placeholder: '',
   shipmentName: '',
-  itemCode: ''
+  itemCode: '',
+  errorMessage: ''
 };
 
 const shipmentReducer = (state=initState, action) => {
   switch (action.type) {
     case 'SHIPMENT_CREATED': 
-      return {...state, shipments: [...state.shipments, action.shipment]};
+      return {...state, shipments: [...state.shipments, action.shipment], errorMessage: ''};
     case 'SHIPMENTS_FETCHED': 
-      return {...state, shipments: action.shipments};
+      return {...state, shipments: action.shipments, errorMessage: ''};
     case 'MODAL_CREATION_FORM_CALLED': 
       return {...state, isModal: true, typeToCreate: action.typeToCreate, placeholder: action.placeholder};
     case 'MODAL_CREATION_FORM_CLOSED':
@@ -27,6 +28,9 @@ const shipmentReducer = (state=initState, action) => {
 
     case 'SHIPMENT_ITEMS_UPDATED':
       return {...state, currentShipment: action.shipment};
+
+    case 'ERROR_MESSAGE_SHOWN':
+      return {...state, errorMessage: action.errorMessage}
 
     case 'SHIPMENT_SELECTED':
       return {...state, currentShipment: action.currentShipment, currentShipmentItems: action.currentShipment.items};
