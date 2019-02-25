@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Item from './Item';
+import {openModalItem} from '../actions/shipmentActions';
 
 class ItemContainer extends Component {
 
   render() {
     let list;
-    const { currentShipment, shipments } = this.props;
+    const { currentShipment, shipments, currentShipmentItems, openModalItem } = this.props;
 
     if (!shipments.length) {
       list = (
@@ -20,14 +21,14 @@ class ItemContainer extends Component {
           <h4>Please choose a shipment.</h4>
         </div>
       )
-    } else if (currentShipment && !currentShipment.items.length) {
+    } else if (currentShipment && !currentShipmentItems.length) {
       list = (
         <div className="message">
           <h4>This shipment doesn't have items. Please add first.</h4>
         </div>
       )
     } else {
-      list = currentShipment.items.map(item => {
+      list = currentShipmentItems.map(item => {
         console.log(item)
         return (
           <li className='item' key={item.id}><Item item={item}/></li>
@@ -43,7 +44,7 @@ class ItemContainer extends Component {
           { list }
           </ul>
           <div className="items-buttons-container">
-            <button className="submit-button wide-button item-button" onClick={console.log('hi')}>
+            <button className="submit-button wide-button item-button" onClick={openModalItem}>
               ADD ITEM
             </button>
             <button className="submit-button wide-button item-button" onClick={console.log('hi')}>
@@ -59,13 +60,14 @@ class ItemContainer extends Component {
 const mapStateToProps = (state) => {
   return {
     currentShipment: state.shipmentReducer.currentShipment,
-    shipments: state.shipmentReducer.shipments
+    shipments: state.shipmentReducer.shipments,
+    currentShipmentItems: state.shipmentReducer.currentShipmentItems
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    
+    openModalItem: () => {dispatch(openModalItem())}
   }
 };
 
