@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {handleItemDelete} from '../actions/shipmentActions';
+import {handleItemDelete, updateShipmentInfo} from '../actions/shipmentActions';
 
 class ModalConfirm extends Component {
+
+  componentWillUnmount = () => {
+    updateShipmentInfo();
+  }
+
   render() {
     const { currentItem, handleCloseForm, handleItemDelete } = this.props;
     if(currentItem) {

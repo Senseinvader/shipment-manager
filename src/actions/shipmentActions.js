@@ -82,6 +82,55 @@ export const createShipment = (name) => {
   }
 }
 
+export const handleItemDelete = () => {
+  return (dispatch, getState) => {
+    let currentItem = getState().shipmentReducer.currentItem;
+    console.log(`https://api.shipments.test-y-sbm.com/item/${currentItem.id}`)
+    fetch(`https://api.shipments.test-y-sbm.com/item/${currentItem.id}`, {
+      method: 'DELETE',
+      headers: new Headers(
+        {
+          'Content-Type': 'application/json',
+          'Accept': 'aplication/json',
+          'Authorization': 'Bearer ' + getState().loginReducer.token})
+    })
+    .then(() => {
+      console.log('it should be deleted')
+      updateShipmentInfo();
+    })
+    .then(() => {
+      console.log('list updated')
+      dispatch({type: 'MODAL_CONFIRMATION_FORM_CLOSED'})
+    })
+    .catch(err => console.log(err.message));
+  }
+}
+
+export const updateShipmentInfo = () => {
+  console.log('will we ever start?')
+  return (dispatch, getState) => {
+    let currentShipment = getState().shipmentReducer.currentShipment;
+    console.log(`https://api.shipments.test-y-sbm.com/shipment/${currentShipment.id}`)
+    fetch(`https://api.shipments.test-y-sbm.com/shipment/${currentShipment.id}`, {
+      method: 'GET',
+      headers: new Headers(
+        {
+          'Content-Type': 'application/json',
+          'Accept': 'aplication/json',
+          'Authorization': 'Bearer ' + getState().loginReducer.token})
+    })
+    .then((result) => {
+      console.log(result.data);
+      dispatch({type:'SHIPMENT_ITEMS_UPDATED', items: result.data})
+    })
+    .then(() => {
+      console.log('list updated')
+      dispatch({type: 'MODAL_CONFIRMATION_FORM_CLOSED'})
+    })
+    .catch(err => console.log(err.message));
+  }
+}
+ 
 const createItem = (code) => {
   console.log('createItem ', code);
 } 

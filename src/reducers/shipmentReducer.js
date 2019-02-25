@@ -24,6 +24,9 @@ const shipmentReducer = (state=initState, action) => {
     case 'MODAL_CONFIRMATION_FORM_CLOSED':
       return {...state, isModalConfirmation: false, currentItem: null};
 
+    case 'SHIPMENT_ITEMS_UPDATED':
+      return {...state, currentShipment: action.shipment};
+
     case 'SHIPMENT_SELECTED':
       return {...state, currentShipment: action.currentShipment};
     case 'ON_SHIPMENT_NAME_CHANGED':
