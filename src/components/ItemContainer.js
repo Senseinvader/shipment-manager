@@ -30,7 +30,7 @@ class ItemContainer extends Component {
       list = currentShipment.items.map(item => {
         console.log(item)
         return (
-          <li className='item' key={item.id}><Item code={item.code}/></li>
+          <li className='item' key={item.id}><Item item={item}/></li>
         ) 
       })
     }

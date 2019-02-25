@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 
 class Item extends Component {
   render() {
-    const {code} = this.props;
+    const {item, selectItem} = this.props;
     return (
       <div className='item-container'>
         <div className="item-description">
-          {code}
+          {item.code}
         </div>
-        <button className='submit-button low-button'>DELETE</button>
+        <button className='submit-button low-button' onClick={() => selectItem(item)}>DELETE</button>
       </div>
     )
   }
@@ -23,7 +23,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    selectItem: (item) => {dispatch({type: 'ITEM_SELECTED', currentItem: item})}
   }
 };
 

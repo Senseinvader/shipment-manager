@@ -1,6 +1,7 @@
 const initState = {
   shipments: [],
   currentShipment: null,
+  currentItem: null,
   isModal: false,
   typeToCreate: '',
   placeholder: '',
@@ -24,6 +25,10 @@ const shipmentReducer = (state=initState, action) => {
       return {...state, shipmentName: action.shipmentName};
     case 'ON_ITEM_CODE_CHANGED':
       return {...state, itemCode: action.itemCode};
+    case 'ITEM_SELECTED':
+      return {...state, currentItem: action.currentItem};
+    case 'ITEM_DELETED': 
+      return {...state, }
     case 'MODAL_FORM_CLOSED':
       return {...state, isModal: false, typeToCreate: '', placeholder: '', shipmentName: '', itemCode: '', currentShipment: null};
     case 'USER_LOGGED_OUT': 
