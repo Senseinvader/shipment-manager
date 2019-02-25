@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {handleItemDelete, updateShipmentInfo} from '../actions/shipmentActions';
+import {deleteItemFromShipment} from '../actions/shipmentActions';
 
 class ModalConfirm extends Component {
-
-  componentWillUnmount = () => {
-    updateShipmentInfo();
-  }
 
   render() {
     const { currentItem, handleCloseForm, handleItemDelete } = this.props;
@@ -44,7 +40,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     handleCloseForm: () => {dispatch({type: 'MODAL_CONFIRMATION_FORM_CLOSED'})},
-    handleItemDelete: () => {dispatch(handleItemDelete())}
+    handleItemDelete: () => {dispatch(deleteItemFromShipment())}
   }
 };
 

@@ -9,6 +9,8 @@ export const validateForm = (typeValue, typeToCreate) => {
       } else {
         dispatch(createShipment(typeValue));
       }
+    } else if (typeToCreate==='item') {
+      dispatch(addItemToShipment(typeValue));
     } else {
       if (!checkItemNames(getState().shipmentReducer.currentShipment, typeValue)) {
         dispatch(sendErrorMessage('Item with this name already exists in this shipment.'));
@@ -47,9 +49,7 @@ export const fetchShipments = () => {
           'Accept': 'application/json',
           'Authorization': 'Bearer ' + getState().loginReducer.token})
     })
-    .then(results => {
-      return results.json();
-    })
+    .then(results => results.json())
     .then(data => {
       dispatch({type: 'SHIPMENTS_FETCHED', shipments: data.data.shipments})
     })
@@ -73,16 +73,14 @@ export const createShipment = (name) => {
       })
     })
     .then(() => {
-      let shipment = {id: id, name: name, items: []};
-      dispatch({type: 'SHIPMENT_CREATED', shipment: shipment});
-      fetchShipments();
       dispatch({type: 'MODAL_FORM_CLOSED'});
+      dispatch(fetchShipments());
     })
     .catch(err => console.log(err.message));
   }
 }
 
-export const handleItemDelete = () => {
+export const deleteItemFromShipment = () => {
   return (dispatch, getState) => {
     let currentItem = getState().shipmentReducer.currentItem;
     console.log(`https://api.shipments.test-y-sbm.com/item/${currentItem.id}`)
@@ -95,37 +93,41 @@ export const handleItemDelete = () => {
           'Authorization': 'Bearer ' + getState().loginReducer.token})
     })
     .then(() => {
-      console.log('it should be deleted')
-      updateShipmentInfo();
+      // dispatch(updateShipmentInfo());
+      dispatch(fetchShipments());
     })
     .then(() => {
-      console.log('list updated')
+      dispatch({type: 'ITEM_DELETED_FROM_CURRENT_SHIPMENT'});
       dispatch({type: 'MODAL_CONFIRMATION_FORM_CLOSED'})
     })
     .catch(err => console.log(err.message));
   }
 }
 
-export const updateShipmentInfo = () => {
-  console.log('will we ever start?')
+const addItemToShipment = (code) => {
+  let id = createRandomIntegerId();
   return (dispatch, getState) => {
-    let currentShipment = getState().shipmentReducer.currentShipment;
-    console.log(`https://api.shipments.test-y-sbm.com/shipment/${currentShipment.id}`)
-    fetch(`https://api.shipments.test-y-sbm.com/shipment/${currentShipment.id}`, {
-      method: 'GET',
+    let currentShimentId = getState().shipmentReducer.currentShipment.id;
+    let currentShipmentName = getState().shipmentReducer.currentShipment.name;
+    fetch('https://api.shipments.test-y-sbm.com/item', {
+      method: 'POST',
       headers: new Headers(
         {
           'Content-Type': 'application/json',
-          'Accept': 'aplication/json',
-          'Authorization': 'Bearer ' + getState().loginReducer.token})
-    })
-    .then((result) => {
-      console.log(result.data);
-      dispatch({type:'SHIPMENT_ITEMS_UPDATED', items: result.data})
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ' + getState().loginReducer.token}),
+      body: JSON.stringify({
+        id: id,
+        shipment_id: currentShimentId,
+        name: currentShipmentName,
+        code: code
+      })
     })
     .then(() => {
-      console.log('list updated')
-      dispatch({type: 'MODAL_CONFIRMATION_FORM_CLOSED'})
+      dispatch(fetchShipments());
+      let item = {id: id, shipment_id: currentShimentId, name: currentShipmentName, code: code};
+      dispatch({type: 'ITEM_ADDED', item: item});
+      dispatch({type: 'MODAL_FORM_CLOSED'});
     })
     .catch(err => console.log(err.message));
   }
@@ -133,7 +135,7 @@ export const updateShipmentInfo = () => {
  
 const createItem = (code) => {
   console.log('createItem ', code);
-} 
+}
 
 export const openModalShipment = () => ({
   type: 'MODAL_CREATION_FORM_CALLED',
@@ -143,7 +145,7 @@ export const openModalShipment = () => ({
 
 export const openModalItem = () => ({
   type: 'MODAL_CREATION_FORM_CALLED',
-  typetoCreate: 'item',
+  typeToCreate: 'item',
   placeholder: 'item code'
 });
 
