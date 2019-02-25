@@ -14,6 +14,7 @@
   width: 70%;
   max-width: calc(100% - 200px);
   min-width: calc(100% - 300px);
+  overflow: auto;
 }
 .items-buttons-container {
   border-top: 1px solid rgb(123, 156, 255);
@@ -26,8 +27,8 @@
 .flex-items-list {
   list-style-type: none;
   width: 100%;
-  margin-right: 50px;
-  
+  margin-right: 80px;  
+  text-align: center;
 }
 .item {
   padding: 15px 20px;
@@ -35,6 +36,18 @@
 }
 .item:hover {
   background-color: rgb(180, 198, 255);
+}
+.message {
+  text-align: center;
+  font-size: 1.5em;
+  border: 1px solid rgb(85, 85, 85);
+  padding: 30px;
+  max-width: 500px;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  
 }
 @media only screen and (max-width: 520px) {
   .item-button {

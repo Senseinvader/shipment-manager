@@ -23,6 +23,7 @@
   height: 30px;
   text-align: center;
   padding: 5px 20px;
+  background-color: #ef5350;
 }
 .submit-button:hover {
   background-color: rgb(92, 132, 253);
