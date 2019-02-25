@@ -1,6 +1,7 @@
 const initState = {
   shipments: [],
   currentShipment: null,
+  currentShipmentItems: [],
   currentItem: null,
   isModal: false,
   isModalConfirmation: false,
@@ -28,19 +29,22 @@ const shipmentReducer = (state=initState, action) => {
       return {...state, currentShipment: action.shipment};
 
     case 'SHIPMENT_SELECTED':
-      return {...state, currentShipment: action.currentShipment};
+      return {...state, currentShipment: action.currentShipment, currentShipmentItems: action.currentShipment.items};
     case 'ON_SHIPMENT_NAME_CHANGED':
       return {...state, shipmentName: action.shipmentName};
     case 'ON_ITEM_CODE_CHANGED':
       return {...state, itemCode: action.itemCode};
+    case 'ITEM_ADDED': 
+      return {...state, currentShipmentItems: [...state.currentShipmentItems, action.item]};
     case 'ITEM_SELECTED':
       return {...state, currentItem: action.currentItem, isModalConfirmation: true};
-    case 'ITEM_DELETED': 
-      return {...state, }
+      
+    case 'ITEM_DELETED_FROM_CURRENT_SHIPMENT': 
+      return {...state, currentShipmentItems: state.currentShipmentItems.filter(item => item.id === action.id)};
     case 'MODAL_FORM_CLOSED':
-      return {...state, isModal: false, typeToCreate: '', placeholder: '', shipmentName: '', itemCode: '', currentShipment: null};
+      return {...state, isModal: false, typeToCreate: '', placeholder: '', shipmentName: '', itemCode: ''};
     case 'USER_LOGGED_OUT': 
-      return {...state, isModal: false, typeToCreate: '', placeholder: '', shipmentName: '', itemCode: '', shipments: [], currentShipment: null};
+      return {...state, isModal: false, typeToCreate: '', placeholder: '', shipmentName: '', itemCode: '', shipments: [], currentShipment: null, currentShipmentItems: []};
     default:
       return state;
   }
