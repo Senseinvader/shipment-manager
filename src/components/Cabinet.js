@@ -4,7 +4,7 @@ import {Redirect} from 'react-router-dom';
 import SideBar from './SideBar';
 import ItemContainer from './ItemContainer';
 import ModalForm from './ModalForm';
-
+import ModalConfirm from './ModalConfirm';
 
 class Cabinet extends Component {
 
@@ -19,6 +19,7 @@ class Cabinet extends Component {
         <SideBar/>
         <ItemContainer/>
         <ModalForm/>
+        <ModalConfirm/>
       </div>
     )
   }

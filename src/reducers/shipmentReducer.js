@@ -3,6 +3,7 @@ const initState = {
   currentShipment: null,
   currentItem: null,
   isModal: false,
+  isModalConfirmation: false,
   typeToCreate: '',
   placeholder: '',
   shipmentName: '',
@@ -19,6 +20,10 @@ const shipmentReducer = (state=initState, action) => {
       return {...state, isModal: true, typeToCreate: action.typeToCreate, placeholder: action.placeholder};
     case 'MODAL_CREATION_FORM_CLOSED':
       return {...state, isModal: false, typeToCreate: '', placeholder: ''};
+
+    case 'MODAL_CONFIRMATION_FORM_CLOSED':
+      return {...state, isModalConfirmation: false, currentItem: null};
+
     case 'SHIPMENT_SELECTED':
       return {...state, currentShipment: action.currentShipment};
     case 'ON_SHIPMENT_NAME_CHANGED':
@@ -26,7 +31,7 @@ const shipmentReducer = (state=initState, action) => {
     case 'ON_ITEM_CODE_CHANGED':
       return {...state, itemCode: action.itemCode};
     case 'ITEM_SELECTED':
-      return {...state, currentItem: action.currentItem};
+      return {...state, currentItem: action.currentItem, isModalConfirmation: true};
     case 'ITEM_DELETED': 
       return {...state, }
     case 'MODAL_FORM_CLOSED':
