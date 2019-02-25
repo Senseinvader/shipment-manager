@@ -44,10 +44,17 @@ class ItemContainer extends Component {
           { list }
           </ul>
           <div className="items-buttons-container">
-            <button className="submit-button wide-button item-button" onClick={openModalItem}>
+            <button
+              className="submit-button wide-button item-button"
+              disabled={currentShipment ? false : true}
+              onClick={openModalItem}>
               ADD ITEM
             </button>
-            <button className="submit-button wide-button item-button" onClick={console.log('hi')}>
+            <button 
+              className="submit-button wide-button item-button"
+              type='button'
+              disabled={currentShipment ? false : true}
+              onClick={() => console.log('hi')}>
               SEND SHIPMENT
             </button>
         </div>       

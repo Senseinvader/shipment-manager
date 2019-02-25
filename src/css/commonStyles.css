@@ -39,3 +39,10 @@
   max-width: 160px;
   margin: 20px 0;
 }
+.submit-button:disabled {
+  background-color: grey;
+  cursor: default;
+}
+.submit-button:active:disabled {
+  transform: translateY(0);
+}
