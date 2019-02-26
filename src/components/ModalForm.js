@@ -11,16 +11,12 @@ class ModalForm extends Component {
       e.preventDefault();
       this.props.validateForm(typeValue, typeToCreate);
     }
-    this.handleEscPress = (e) => {
-      if(e.keyCode === 27) {
-        e.preventDefault();
-        this.props.handleCloseForm();
-        window.removeEventListener('keyup', this.handleEscPress);
-      }
-    }
   }
 
   componentDidMount = () => {
+    window.addEventListener('keyup', this.handleEscPress);
+  }
+  componentDidUpdate = () => {
     window.addEventListener('keyup', this.handleEscPress);
   }
 
@@ -28,7 +24,13 @@ class ModalForm extends Component {
     window.removeEventListener('keyup', this.handleEscPress);
   }
     
-
+  handleEscPress = (e) => {
+    if(e.keyCode === 27) {
+      e.preventDefault();
+      this.props.handleCloseForm();
+      window.removeEventListener('keyup', this.handleEscPress);
+    }
+  }
 
   renderForm(typeValue, onChangeFunction, onSubmitFunction) {
     const {typeToCreate, placeholder, handleCloseForm} = this.props;
