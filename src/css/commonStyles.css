@@ -45,3 +45,11 @@
 .submit-button:disabled {
   visibility: hidden;
 }
+.error-message {
+  display: inline-block;
+  color: #ef5350;
+  text-align: center;
+}
+.error-message:empty:before {
+  content: "\200b";
+}

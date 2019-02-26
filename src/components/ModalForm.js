@@ -32,8 +32,8 @@ class ModalForm extends Component {
     }
   }
 
-  renderForm(typeValue, onChangeFunction, onSubmitFunction) {
-    const {typeToCreate, placeholder, handleCloseForm} = this.props;
+  renderForm(typeValue, onChangeFunction) {
+    const {typeToCreate, placeholder, handleCloseForm, errorMessage} = this.props;
     return (
       <div className='modal-container'>
         <div className="form-container">
@@ -47,6 +47,7 @@ class ModalForm extends Component {
               placeholder={placeholder}
               value={typeValue}
               onChange={onChangeFunction}/>
+            <p className="error-message">{errorMessage}</p>
             <div className="flex-button-container">
               <button
                 className='submit-button wide-button'
@@ -80,7 +81,8 @@ const mapStateToProps = (state) => {
     typeToCreate: state.shipmentReducer.typeToCreate,
     placeholder: state.shipmentReducer.placeholder,
     shipmentName: state.shipmentReducer.shipmentName,
-    itemCode: state.shipmentReducer.itemCode
+    itemCode: state.shipmentReducer.itemCode,
+    errorMessage: state.shipmentReducer.errorMessage
   }
 };
 
