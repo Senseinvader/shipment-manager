@@ -136,13 +136,13 @@ const createItem = (code) => {
   console.log('createItem ', code);
 }
 
-export const openModalShipment = () => ({
+export const openModalFormShipment = () => ({
   type: 'MODAL_CREATION_FORM_CALLED',
   typeToCreate: 'shipment',
   placeholder: 'shipment name'
 });
 
-export const openModalItem = () => ({
+export const openModalFormItem = () => ({
   type: 'MODAL_CREATION_FORM_CALLED',
   typeToCreate: 'item',
   placeholder: 'item code'

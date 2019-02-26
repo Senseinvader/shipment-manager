@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Item from './Item';
-import {openModalItem} from '../actions/shipmentActions';
+import {openModalFormItem} from '../actions/shipmentActions';
 
 class ItemContainer extends Component {
 
   render() {
     let list;
-    const { currentShipment, shipments, currentShipmentItems, openModalItem } = this.props;
+    const { currentShipment, shipments, currentShipmentItems, openModalFormItem } = this.props;
 
     if (!shipments.length) {
       list = (
@@ -46,7 +46,7 @@ class ItemContainer extends Component {
             <button
               className="submit-button wide-button item-button"
               disabled={currentShipment ? false : true}
-              onClick={openModalItem}>
+              onClick={openModalFormItem}>
               ADD ITEM
             </button>
             <button 
@@ -73,7 +73,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    openModalItem: () => {dispatch(openModalItem())}
+    openModalFormItem: () => {dispatch(openModalFormItem())}
   }
 };
 
