@@ -10,12 +10,10 @@ export const validateForm = (typeValue, typeToCreate) => {
         dispatch(createShipment(typeValue));
       }
     } else if (typeToCreate==='item') {
-      dispatch(addItemToShipment(typeValue));
-    } else {
       if (!checkItemNames(getState().shipmentReducer.currentShipment, typeValue)) {
         dispatch(sendErrorMessage('Item with this name already exists in this shipment.'));
       } else {
-        dispatch(createItem(typeValue));
+        dispatch(addItemToShipment(typeValue));
       }
     }
   }
@@ -83,7 +81,6 @@ export const createShipment = (name) => {
 export const deleteItemFromShipment = () => {
   return (dispatch, getState) => {
     let currentItem = getState().shipmentReducer.currentItem;
-    console.log(`https://api.shipments.test-y-sbm.com/item/${currentItem.id}`)
     fetch(`https://api.shipments.test-y-sbm.com/item/${currentItem.id}`, {
       method: 'DELETE',
       headers: new Headers(
@@ -131,9 +128,9 @@ const addItemToShipment = (code) => {
     .catch(err => console.log(err.message));
   }
 }
- 
-const createItem = (code) => {
-  console.log('createItem ', code);
+
+export const sendShipment = () => {
+  console.log('send shipment')
 }
 
 export const openModalFormShipment = () => ({
@@ -146,6 +143,16 @@ export const openModalFormItem = () => ({
   type: 'MODAL_CREATION_FORM_CALLED',
   typeToCreate: 'item',
   placeholder: 'item code'
+});
+
+export const openModalConfirmSendShipment = () => ({
+  type: 'MODAL_CONFIRMATION_FORM_CALLED',
+  actionToConfirm: 'Send'
+});
+
+export const openModalConfirmDeleteItem = () => ({
+  type: 'MODAL_CONFIRMATION_FORM_CALLED',
+  actionToConfirm: 'Delete'
 });
 
 const sendErrorMessage = (message) => ({

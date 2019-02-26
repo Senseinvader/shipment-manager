@@ -23,7 +23,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    selectItem: (item) => {dispatch({type: 'ITEM_SELECTED', currentItem: item})}
+    selectItem: (item) => {dispatch({type: 'ITEM_SELECTED', currentItem: item, actionToConfirm: 'Delete'})}
   }
 };
 

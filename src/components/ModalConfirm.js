@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {deleteItemFromShipment} from '../actions/shipmentActions';
+import {deleteItemFromShipment, sendShipment} from '../actions/shipmentActions';
 
 class ModalConfirm extends Component {
 
@@ -24,20 +24,20 @@ class ModalConfirm extends Component {
   }
    
 
-  render() {
-    const { currentItem, handleCloseForm, handleItemDelete } = this.props;
-    if(currentItem) {
+  renderModalConfirmation(handlerFunction) {
+    console.log('are we here?')
+    const { currentItem, currentShipment, handleCloseForm,actionToConfirm } = this.props;
       return (
         <div className='modal-container'>
           <div className="form-container">
             <div className="login-header">
-              <h1>Delete {currentItem.code}?</h1>
+              <h1>{actionToConfirm} {actionToConfirm==='Delete' ? currentItem.code : currentShipment.name}?</h1>
             </div>
             <div className="flex-button-container">
               <button
                 className='submit-button wide-button'
-                onClick={handleItemDelete}
-              >DELETE</button>
+                onClick={handlerFunction}
+              >{actionToConfirm.toUpperCase()}</button>
               <button
                 className='cancel-button wide-button'
                 onClick={handleCloseForm}
@@ -46,21 +46,34 @@ class ModalConfirm extends Component {
           </div>
         </div>
       );
-    }
-    return null;
+  }
+
+  render() {
+    console.log('came to render')
+    const {isModalConfirmation, actionToConfirm, handleItemDelete, handleShipmentSend} = this.props;
+    console.log(actionToConfirm==='Delete', isModalConfirmation)
+    if (isModalConfirmation && actionToConfirm==='Delete') {
+      return this.renderModalConfirmation(handleItemDelete);
+    } else if (isModalConfirmation && actionToConfirm==='Send') {
+      return this.renderModalConfirmation(handleShipmentSend);
+    } else return null;
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    currentItem: state.shipmentReducer.currentItem
+    currentItem: state.shipmentReducer.currentItem,
+    currentShipment: state.shipmentReducer.currentShipment,
+    actionToConfirm: state.shipmentReducer.actionToConfirm,
+    isModalConfirmation: state.shipmentReducer.isModalConfirmation
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     handleCloseForm: () => {dispatch({type: 'MODAL_CONFIRMATION_FORM_CLOSED'})},
-    handleItemDelete: () => {dispatch(deleteItemFromShipment())}
+    handleItemDelete: () => {dispatch(deleteItemFromShipment())},
+    handleShipmentSend: () => {dispatch(sendShipment())}
   }
 };
 

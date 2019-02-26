@@ -7,7 +7,7 @@ class ItemContainer extends Component {
 
   render() {
     let list;
-    const { currentShipment, shipments, currentShipmentItems, openModalFormItem } = this.props;
+    const { currentShipment, shipments, currentShipmentItems, openModalFormItem, selectItem } = this.props;
 
     if (!shipments.length) {
       list = (
@@ -53,7 +53,7 @@ class ItemContainer extends Component {
               className="submit-button wide-button item-button"
               type='button'
               disabled={currentShipment ? false : true}
-              onClick={() => console.log('hi')}>
+              onClick={() => selectItem()}>
               SEND SHIPMENT
             </button>
         </div>       
@@ -73,7 +73,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    openModalFormItem: () => {dispatch(openModalFormItem())}
+    openModalFormItem: () => {dispatch(openModalFormItem())},
+    selectItem: () => {dispatch({type: 'ITEM_SELECTED', currentItem: null, actionToConfirm: 'Send'})}
   }
 };
 
