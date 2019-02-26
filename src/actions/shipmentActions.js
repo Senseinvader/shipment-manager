@@ -10,11 +10,7 @@ export const validateForm = (typeValue, typeToCreate) => {
         dispatch(createShipment(typeValue));
       }
     } else if (typeToCreate==='item') {
-      if (!checkItemNames(getState().shipmentReducer.currentShipment, typeValue)) {
-        dispatch(sendErrorMessage('Item with this name already exists in this shipment.'));
-      } else {
-        dispatch(addItemToShipment(typeValue));
-      }
+      dispatch(addItemToShipment(typeValue));
     }
   }
 }
@@ -131,6 +127,23 @@ const addItemToShipment = (code) => {
 
 export const sendShipment = () => {
   console.log('send shipment')
+  return (dispatch, getState) => {
+    let shipmentId = getState().shipmentReducer.currentShipment.id;
+    fetch(`https://api.shipments.test-y-sbm.com/shipment/${shipmentId}/send`, {
+      method: 'POST',
+      headers: new Headers(
+        {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ' + getState().loginReducer.token})
+    })
+    .then(() => {
+      dispatch({type: 'MODAL_CONFIRMATION_FORM_CLOSED'});
+      dispatch({type: 'CURRENT_SHIPMENT_SENT'});
+      dispatch(fetchShipments());
+    })
+    .catch(err => console.log(err.message));
+  }
 }
 
 export const openModalFormShipment = () => ({
