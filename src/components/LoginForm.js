@@ -16,7 +16,7 @@ class LoginForm extends Component {
   }
 
   render() {
-    const {email, password, isLoggedIn} = this.props;
+    const {email, password, isLoggedIn, errorMessage} = this.props;
 
     if(isLoggedIn) {
       return (<Redirect to='admin'/>)
@@ -46,6 +46,9 @@ class LoginForm extends Component {
                   onChange={this.onChangePassword}/>
               </li>
               <li>
+                <p className="error-message">{errorMessage}</p>
+              </li>
+              <li>
                 <button
                   className='submit-button'
                   type='submit'
@@ -62,7 +65,8 @@ const mapStateToProps = (state) => {
   return {
     email: state.loginReducer.email,
     password: state.loginReducer.password,
-    isLoggedIn: state.loginReducer.isLoggedIn
+    isLoggedIn: state.loginReducer.isLoggedIn,
+    errorMessage: state.loginReducer.errorMessage
   }
 };
 

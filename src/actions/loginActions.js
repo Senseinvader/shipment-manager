@@ -34,7 +34,7 @@ const handleLogin = (email, password) => {
     .then(data => {
       dispatch(userLoggedIn(data.data[0].token));
     })
-    .catch(err => console.log(err.message));
+    .catch(err => dispatch(sendErrorMessage('Wrong creadentials - ' + err.message)));
   }
 };
 
