@@ -93,11 +93,10 @@ export const deleteItemFromShipment = () => {
           'Authorization': 'Bearer ' + getState().loginReducer.token})
     })
     .then(() => {
-      // dispatch(updateShipmentInfo());
       dispatch(fetchShipments());
     })
     .then(() => {
-      dispatch({type: 'ITEM_DELETED_FROM_CURRENT_SHIPMENT'});
+      dispatch({type: 'ITEM_DELETED_FROM_CURRENT_SHIPMENT', id: currentItem.id});
       dispatch({type: 'MODAL_CONFIRMATION_FORM_CLOSED'})
     })
     .catch(err => console.log(err.message));

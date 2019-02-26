@@ -44,7 +44,7 @@ const shipmentReducer = (state=initState, action) => {
       return {...state, currentItem: action.currentItem, isModalConfirmation: true};
       
     case 'ITEM_DELETED_FROM_CURRENT_SHIPMENT': 
-      return {...state, currentShipmentItems: state.currentShipmentItems.filter(item => item.id === action.id)};
+      return {...state, currentShipmentItems: state.currentShipmentItems.filter(item => item.id !== action.id)};
     case 'MODAL_FORM_CLOSED':
       return {...state, isModal: false, typeToCreate: '', placeholder: '', shipmentName: '', itemCode: ''};
     case 'USER_LOGGED_OUT': 
