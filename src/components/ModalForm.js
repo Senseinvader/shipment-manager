@@ -71,7 +71,7 @@ class ModalForm extends Component {
       return this.renderForm(shipmentName, this.onChangeShipmentName);
     } else if (isModal && typeToCreate==='item') {
       return this.renderForm(itemCode, this.onChangeItemCode);
-    } else return null;
+    }
   }
 }
 

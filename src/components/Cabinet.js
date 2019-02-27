@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import { connect } from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import SideBar from './SideBar';
 import ItemContainer from './ItemContainer';
-import ModalForm from './ModalForm';
-import ModalConfirm from './ModalConfirm';
+const ModalConfirm = React.lazy(() => import('./ModalConfirm'));
+const ModalForm = React.lazy(() => import('./ModalForm'));
 
 class Cabinet extends Component {
 
   render() {
-    const {isLoggedIn} = this.props;
+    const {isLoggedIn, isModalConfirmation, isModal} = this.props;
     if (!isLoggedIn) {
       return (<Redirect to='/' />)
     }
@@ -18,8 +18,16 @@ class Cabinet extends Component {
       <div className='cabinet-container'>
         <SideBar/>
         <ItemContainer/>
-        <ModalForm/>
-        <ModalConfirm/>
+        {isModal && (
+          <Suspense fallback={<div>Loading...</div>}>
+            <ModalForm/>
+          </Suspense>
+        )}
+        {isModalConfirmation && (
+          <Suspense fallback={<div>Loading...</div>}>
+            <ModalConfirm/>
+          </Suspense>
+        )}
       </div>
     )
   }
@@ -28,6 +36,8 @@ class Cabinet extends Component {
 const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.loginReducer.isLoggedIn,
+    isModalConfirmation: state.shipmentReducer.isModalConfirmation,
+    isModal: state.shipmentReducer.isModal
   }
 };
 

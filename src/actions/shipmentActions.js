@@ -15,14 +15,14 @@ export const validateForm = (typeValue, typeToCreate) => {
   }
 }
 
-const checkItemNames = (currentShipment, typeValue) => {
-  for (let item of currentShipment) {
-    if (item.code === typeValue) {
-      return false;
-    }
-  }
-  return true;
-}
+// const checkItemNames = (currentShipment, typeValue) => {
+//   for (let item of currentShipment) {
+//     if (item.code === typeValue) {
+//       return false;
+//     }
+//   }
+//   return true;
+// }
 
 const checkShipmentNames = (shipments, typeValue) => {
   for (let shipment of shipments) {

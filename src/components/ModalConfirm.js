@@ -56,7 +56,7 @@ class ModalConfirm extends Component {
       return this.renderModalConfirmation(handleItemDelete);
     } else if (isModalConfirmation && actionToConfirm==='Send') {
       return this.renderModalConfirmation(handleShipmentSend);
-    } else return null;
+    }
   }
 }
 
