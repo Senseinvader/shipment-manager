@@ -13,7 +13,7 @@ Then, you can run:
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-Also it is possible to run the application deployed on Heroku by following [this link] (https://shipment-manager.herokuapp.com/).
+Also it is possible to run the application deployed on Heroku by following [this link](https://shipment-manager.herokuapp.com).
 
 The current version of the application design is to be used only on desktop systems. Critical reducing of the window size reduces the functionality of the application.
 
