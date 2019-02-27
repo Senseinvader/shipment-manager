@@ -6,8 +6,8 @@ import {openModalFormItem} from '../actions/shipmentActions';
 class ItemContainer extends Component {
 
   render() {
-    let list;
-    const { currentShipment, shipments, currentShipmentItems, openModalFormItem, selectItem } = this.props;
+    const { currentShipment, shipments, currentShipmentItems, openModalFormItem, selectItem, inProgress } = this.props;
+    let list = null;
 
     if (!shipments.length) {
       list = (
@@ -40,7 +40,19 @@ class ItemContainer extends Component {
         <div className="gap"> </div>
         <div className="items-list-container">
           <ul className="flex-items-list">
-          { list }
+
+          { inProgress
+            ?  <h2>Loading...</h2>
+            : list }
+
+
+          {/* {isEmpty
+            ? (isFetching ? <h2>Loading...</h2> : <h2>Empty.</h2>)
+            : <div style={{ opacity: isFetching ? 0.5 : 1 }}>
+                <Posts posts={posts} />
+              </div>
+          } */}
+
           </ul>
           <div className="items-buttons-container">
             <button
@@ -67,7 +79,8 @@ const mapStateToProps = (state) => {
   return {
     currentShipment: state.shipmentReducer.currentShipment,
     shipments: state.shipmentReducer.shipments,
-    currentShipmentItems: state.shipmentReducer.currentShipmentItems
+    currentShipmentItems: state.shipmentReducer.currentShipmentItems,
+    inProgress: state.shipmentReducer.inProgress
   }
 };
 

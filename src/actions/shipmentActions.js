@@ -35,6 +35,7 @@ const checkShipmentNames = (shipments, typeValue) => {
 
 export const fetchShipments = () => {
   return (dispatch, getState) => {
+    dispatch(fetchShipmentsStart());
     fetch('https://api.shipments.test-y-sbm.com/shipment', {
       method: 'GET',
       headers: new Headers(
@@ -145,6 +146,15 @@ export const sendShipment = () => {
     .catch(err => console.log(err.message));
   }
 }
+
+const fetchShipmentsStart = () => ({
+  type: 'FETCH_SHIPMENTS_START'
+});
+
+// const fetchShipmentsSuccess = () => ({
+//   type: 'FETCH_SHIPMENTS_SUCCESS',
+
+// });
 
 export const openModalFormShipment = () => ({
   type: 'MODAL_CREATION_FORM_CALLED',

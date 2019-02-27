@@ -10,15 +10,18 @@ const initState = {
   placeholder: '',
   shipmentName: '',
   itemCode: '',
-  errorMessage: ''
+  errorMessage: '',
+  inProgress: false
 };
 
 const shipmentReducer = (state=initState, action) => {
   switch (action.type) {
+    case 'FETCH_SHIPMENTS_START':
+      return {...state, inProgress: true, errorMessage: ''}
     case 'SHIPMENT_CREATED': 
       return {...state, shipments: [...state.shipments, action.shipment], errorMessage: ''};
     case 'SHIPMENTS_FETCHED': 
-      return {...state, shipments: action.shipments, errorMessage: ''};
+      return {...state, shipments: action.shipments, inProgress: false, errorMessage: ''};
     case 'MODAL_CREATION_FORM_CALLED': 
       return {...state, isModal: true, typeToCreate: action.typeToCreate, placeholder: action.placeholder};
     case 'MODAL_CREATION_FORM_CLOSED':
