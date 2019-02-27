@@ -41,6 +41,8 @@ class ItemContainer extends Component {
         <div className="items-list-container">
           <ul className="flex-items-list">
 
+          <h2 className='shipment-header'>{currentShipment ? currentShipment.name : ' '}</h2>
+
           { inProgress
             ?  <h2>Loading...</h2>
             : list }
