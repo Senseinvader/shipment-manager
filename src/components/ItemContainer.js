@@ -7,26 +7,26 @@ class ItemContainer extends Component {
 
   render() {
     let list;
-    const { currentShipment, shipments, currentShipmentItems, openModalFormItem, selectItemToSend, selectItemToDelete, inProgress } = this.props;
+    const { currentShipment,shipments, currentShipmentItems, openModalFormItem, selectItemToSend, selectItemToDelete, inProgress } = this.props;
 
     // Depending on if shipment not selected or it doesnt have items
     // warning messages are rendered in the items list place 
     if (!shipments.length) {
       list = (
         <div className="message">
-          <h4>You don't have shipments yet. Please create first.</h4>
+          <h4>You don't have shipments yet. Go on and create first.</h4>
         </div>
       )
     } else if (shipments.length && !currentShipment) {
       list = (
         <div className="message">
-          <h4>Please choose a shipment.</h4>
+          <h4>Choose a shipment, lad.</h4>
         </div>
       )
     } else if (currentShipment && !currentShipmentItems.length) {
       list = (
         <div className="message">
-          <h4>This shipment doesn't have items. Please add first.</h4>
+          <h4>This shipment doesn't have items. Add the first one.</h4>
         </div>
       )
     } else {
