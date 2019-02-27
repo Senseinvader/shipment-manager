@@ -16,8 +16,10 @@ class LoginForm extends Component {
   }
 
   render() {
-    const {email, password, isLoggedIn, errorMessage} = this.props;
+    const { email, password, isLoggedIn, errorMessage } = this.props;
 
+    // In case of placing token to localStorage it would be possible to 
+    // automaticly redirect a user to the cabinet on page refresh, if he/she didnt logged out
     if(isLoggedIn) {
       return (<Redirect to='admin'/>)
     }
@@ -72,9 +74,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    validateForm: (email, password) => {dispatch(validateForm(email, password))},
-    onChangeEmail: (email) => {dispatch({ type: 'EMAIL_CHANGED', email })},
-    onChangePassword: (password) => {dispatch({ type: 'PASSWORD_CHANGED', password })}
+    validateForm: (email, password) => { dispatch(validateForm(email, password)) },
+    onChangeEmail: (email) => { dispatch({ type: 'EMAIL_CHANGED', email })},
+    onChangePassword: (password) => { dispatch({ type: 'PASSWORD_CHANGED', password }) }
   }
 };
 

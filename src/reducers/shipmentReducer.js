@@ -14,6 +14,9 @@ const initState = {
   inProgress: false
 };
 
+
+// TODO separate operations on shipments and on items to different modules
+// the number of cases is overwhelming :(
 const shipmentReducer = (state=initState, action) => {
   switch (action.type) {
     case 'FETCH_SHIPMENTS_START':
@@ -26,22 +29,16 @@ const shipmentReducer = (state=initState, action) => {
       return {...state, isModal: true, typeToCreate: action.typeToCreate, placeholder: action.placeholder};
     case 'MODAL_CREATION_FORM_CLOSED':
       return {...state, isModal: false, typeToCreate: '', placeholder: ''};
-
-
     case 'MODAL_CONFIRMATION_FORM_CALLED':
       return {...state, isModalConfirmation: true, actionToConfirm: action.actionToConfirm}
     case 'MODAL_CONFIRMATION_FORM_CLOSED':
       return {...state, isModalConfirmation: false, currentItem: null, actionToConfirm: ''};
-
     case 'SHIPMENT_ITEMS_UPDATED':
       return {...state, currentShipment: action.shipment};
-
     case 'ERROR_MESSAGE_SHOWN':
       return {...state, errorMessage: action.errorMessage};
-
     case 'CURRENT_SHIPMENT_SENT/DELETED':
       return {...state, currentShipment: null, currentShipmentItems: []};
-
     case 'SHIPMENT_SELECTED':
       return {...state, currentShipment: action.currentShipment, currentShipmentItems: action.currentShipment.items};
     case 'ON_SHIPMENT_NAME_CHANGED':
@@ -52,7 +49,6 @@ const shipmentReducer = (state=initState, action) => {
       return {...state, currentShipmentItems: [...state.currentShipmentItems, action.item]};
     case 'ITEM_SELECTED':
       return {...state, currentItem: action.currentItem, isModalConfirmation: true, actionToConfirm: action.actionToConfirm};
-      
     case 'ITEM_DELETED_FROM_CURRENT_SHIPMENT': 
       return {...state, currentShipmentItems: state.currentShipmentItems.filter(item => item.id !== action.id)};
     case 'MODAL_FORM_CLOSED':

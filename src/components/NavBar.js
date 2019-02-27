@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {NavLink} from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 
 class NavBar extends Component {
 
   render() {
-    const {onLogout, isLoggedIn} = this.props;
+    const { onLogout, isLoggedIn } = this.props;
     let logoutButton;
 
     if(isLoggedIn) {

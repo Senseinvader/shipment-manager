@@ -4,18 +4,19 @@ import {fetchShipments, openModalFormShipment} from '../actions/shipmentActions'
 
 class SideBar extends Component {
 
+  // All shipment are fetched on CDM hook
   componentDidMount = () => {
     const {fetchShipments} = this.props;
     fetchShipments();
   }
   
-
   render() {
     const { shipments, openModalFormShipment, setCurrentShipment, currentShipment } = this.props;
     return (
       <div className='sidebar-container'>
         <div className="shipments-list">
           <ul className="ul-flex">
+
             {(shipments.length > 0) ? shipments.map(shipment => {
               let classes = '';
               (currentShipment && shipment.id === currentShipment.id) ? classes = 'current' : classes = '';
@@ -25,6 +26,7 @@ class SideBar extends Component {
             })
             : ''
             }
+
           </ul>
         </div>
         <div className="shipments-button-container">
@@ -46,9 +48,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setCurrentShipment: (shipment) => {dispatch({type: 'SHIPMENT_SELECTED', currentShipment: shipment})},
-    fetchShipments: () => {dispatch(fetchShipments())},
-    openModalFormShipment: () => {dispatch(openModalFormShipment())}
+    setCurrentShipment: (shipment) => { dispatch({type: 'SHIPMENT_SELECTED', currentShipment: shipment}) },
+    fetchShipments: () => { dispatch(fetchShipments()) },
+    openModalFormShipment: () => { dispatch(openModalFormShipment()) }
   }
 };
 

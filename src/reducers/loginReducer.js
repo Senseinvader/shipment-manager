@@ -4,8 +4,7 @@ const initState = {
   password: '',
   isLoggedIn: false,
   errorMessage: '',
-  token: '',
-  inProgress: false
+  token: ''
 }
 
 const loginReducer = (state=initState, action) => {

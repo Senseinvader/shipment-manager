@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Item from './Item';
-import {openModalFormItem} from '../actions/shipmentActions';
+import { openModalFormItem } from '../actions/shipmentActions';
 
 class ItemContainer extends Component {
 
@@ -9,6 +9,8 @@ class ItemContainer extends Component {
     let list;
     const { currentShipment, shipments, currentShipmentItems, openModalFormItem, selectItemToSend, selectItemToDelete, inProgress } = this.props;
 
+    // Depending on if shipment not selected or it doesnt have items
+    // warning messages are rendered in the items list place 
     if (!shipments.length) {
       list = (
         <div className="message">
@@ -35,6 +37,7 @@ class ItemContainer extends Component {
       })
     }
 
+    // The inProgress flag is being set to true for the time of shipments fetch (line 49)
     return (
       <div className='items-container'>
         <div className="gap"> </div>
@@ -87,9 +90,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    openModalFormItem: () => {dispatch(openModalFormItem())},
-    selectItemToSend: () => {dispatch({type: 'ITEM_SELECTED', currentItem: null, actionToConfirm: 'Send'})},
-    selectItemToDelete: () => {dispatch({type: 'ITEM_SELECTED', currentItem: null, actionToConfirm: 'Delete'})}
+    openModalFormItem: () => { dispatch(openModalFormItem()) },
+    selectItemToSend: () => { dispatch({type: 'ITEM_SELECTED', currentItem: null, actionToConfirm: 'Send'}) },
+    selectItemToDelete: () => { dispatch({type: 'ITEM_SELECTED', currentItem: null, actionToConfirm: 'Delete'}) }
   }
 };
 

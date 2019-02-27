@@ -17,7 +17,7 @@ class Item extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    selectItem: (item) => {dispatch({type: 'ITEM_SELECTED', currentItem: item, actionToConfirm: 'Delete'})}
+    selectItem: (item) => { dispatch({type: 'ITEM_SELECTED', currentItem: item, actionToConfirm: 'Delete'}) }
   }
 };
 

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {deleteItemFromShipment, sendShipment, deleteShipment} from '../actions/shipmentActions';
+import { deleteItemFromShipment, sendShipment, deleteShipment } from '../actions/shipmentActions';
 
 class ModalConfirm extends Component {
 
+  // Handler to close modal window with 
   handleEscPress = (e) => {
     if(e.keyCode === 27) {
       e.preventDefault();
@@ -12,18 +13,19 @@ class ModalConfirm extends Component {
     }
   }
 
+  // Listeners to attach ESC button to close modal window
   componentDidMount = () => {
     window.addEventListener('keyup', this.handleEscPress);
   }
   componentDidUpdate = () => {
     window.addEventListener('keyup', this.handleEscPress);
   }
-
   componentWillUnmount = () => {
     window.removeEventListener('keyup', this.handleEscPress);
   }
    
-
+  // Generic finction to render ModalConfirm window for shipment/item to delete
+  // or shipment to send (depending on a given handlerFunction)
   renderModalConfirmation(handlerFunction) {
     const { currentItem, currentShipment, handleCloseForm, actionToConfirm } = this.props;
       return (
@@ -70,10 +72,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleCloseForm: () => {dispatch({type: 'MODAL_CONFIRMATION_FORM_CLOSED'})},
-    handleItemDelete: () => {dispatch(deleteItemFromShipment())},
-    handleShipmentDelete: () => {dispatch(deleteShipment())},
-    handleShipmentSend: () => {dispatch(sendShipment())}
+    handleCloseForm: () => { dispatch({type: 'MODAL_CONFIRMATION_FORM_CLOSED'}) },
+    handleItemDelete: () => { dispatch(deleteItemFromShipment()) },
+    handleShipmentDelete: () => { dispatch(deleteShipment()) },
+    handleShipmentSend: () => { dispatch(sendShipment()) }
   }
 };
 

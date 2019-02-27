@@ -1,4 +1,5 @@
 
+// Function that validates user input in forms to create shipment and item, then fires fetch to API
 export const validateForm = (typeValue, typeToCreate) => {
   return (dispatch, getState) => {
     if (!typeValue) {
@@ -25,6 +26,7 @@ export const validateForm = (typeValue, typeToCreate) => {
 //   return true;
 // }
 
+// Helper function to check it a shipment name is unique
 const checkShipmentNames = (shipments, typeValue) => {
   for (let shipment of shipments) {
     if (shipment.name === typeValue) {
@@ -53,6 +55,8 @@ export const fetchShipments = () => {
   }
 }
 
+// Every new item and shipment has integer IT created by the helper function createRandomIntegerId 
+// see at the bootm of the file
 export const createShipment = (name) => {
   let id = createRandomIntegerId();
   return (dispatch, getState) => {
@@ -99,6 +103,8 @@ export const deleteItemFromShipment = () => {
   }
 }
 
+// Every new item and shipment has integer IT created by the helper function createRandomIntegerId 
+// see at the bootm of the file
 const addItemToShipment = (code) => {
   let id = createRandomIntegerId();
   return (dispatch, getState) => {
@@ -128,8 +134,9 @@ const addItemToShipment = (code) => {
   }
 }
 
+// Shipment send before 27.02.2019 worked by sending item and deleting shipment from the shuipment list afterwards
+// now it doesnt work appropriately (isnt deleted from the list of shipments - tested by Postman)
 export const sendShipment = () => {
-  console.log('send shipment')
   return (dispatch, getState) => {
     let shipmentId = getState().shipmentReducer.currentShipment.id;
     fetch(`https://api.shipments.test-y-sbm.com/shipment/${shipmentId}/send`, {
@@ -142,7 +149,7 @@ export const sendShipment = () => {
     })
     .then(() => {
       dispatch({type: 'MODAL_CONFIRMATION_FORM_CLOSED'});
-      dispatch({type: 'CURRENT_SHIPMENT_SENT'});
+      dispatch({type: 'CURRENT_SHIPMENT_SENT/DELETED'});
       dispatch(fetchShipments());
     })
     .catch(err => console.log(err.message));

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {validateForm} from '../actions/shipmentActions'; 
+import { validateForm } from '../actions/shipmentActions';
 
 class ModalForm extends Component {
   constructor() {
@@ -13,13 +13,13 @@ class ModalForm extends Component {
     }
   }
 
+  // Listeners to attach ESC button to close modal window
   componentDidMount = () => {
     window.addEventListener('keyup', this.handleEscPress);
   }
   componentDidUpdate = () => {
     window.addEventListener('keyup', this.handleEscPress);
   }
-
   componentWillUnmount = () => {
     window.removeEventListener('keyup', this.handleEscPress);
   }
@@ -32,6 +32,8 @@ class ModalForm extends Component {
     }
   }
 
+  // Generic finction to render ModalForm window for shipment/item to create
+  // (depending on a given handlerFunction)
   renderForm(typeValue, onChangeFunction) {
     const {typeToCreate, placeholder, handleCloseForm, errorMessage} = this.props;
     return (
@@ -65,7 +67,7 @@ class ModalForm extends Component {
   }
 
   render() {
-    const {isModal, typeToCreate, shipmentName, itemCode} = this.props;
+    const { isModal, typeToCreate, shipmentName, itemCode } = this.props;
     if (isModal && typeToCreate==='shipment') {
       return this.renderForm(shipmentName, this.onChangeShipmentName);
     } else if (isModal && typeToCreate==='item') {
@@ -87,10 +89,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onChangeItemCode: (itemCode) => {dispatch({type:'ON_ITEM_CODE_CHANGED', itemCode})},
-    onChangeShipmentName: (shipmentName) => {dispatch({type:'ON_SHIPMENT_NAME_CHANGED', shipmentName})},
-    validateForm: (typeValue, typeToCreate) => {dispatch(validateForm(typeValue, typeToCreate))},
-    handleCloseForm: () => {dispatch({type: 'MODAL_FORM_CLOSED'})}
+    onChangeItemCode: (itemCode) => { dispatch({type:'ON_ITEM_CODE_CHANGED', itemCode}) },
+    onChangeShipmentName: (shipmentName) => { dispatch({type:'ON_SHIPMENT_NAME_CHANGED', shipmentName}) },
+    validateForm: (typeValue, typeToCreate) => { dispatch(validateForm(typeValue, typeToCreate)) },
+    handleCloseForm: () => { dispatch({type: 'MODAL_FORM_CLOSED'}) }
   }
 };
 

@@ -38,6 +38,8 @@ const handleLogin = (email, password) => {
   }
 };
 
+
+// Token is only stored in store. If needed, for user convenience it can be stored in localStorage instead
 const userLoggedIn = (token) => ({
   type: 'USER_LOGGED_IN',
   token: token
