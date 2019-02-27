@@ -52,7 +52,7 @@ class ItemContainer extends Component {
             <button 
               className="submit-button wide-button item-button"
               type='button'
-              disabled={currentShipment ? false : true}
+              disabled={currentShipmentItems.length ? false : true}
               onClick={() => selectItem()}>
               SEND SHIPMENT
             </button>
