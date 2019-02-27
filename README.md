@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was created using React/Redux, React Router, redux-thunk middleware, desingned using pure CSS and bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## How To Use
 
