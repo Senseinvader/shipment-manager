@@ -25,7 +25,6 @@ class ModalConfirm extends Component {
    
 
   renderModalConfirmation(handlerFunction) {
-    console.log('are we here?')
     const { currentItem, currentShipment, handleCloseForm, actionToConfirm } = this.props;
       return (
         <div className='modal-container'>
@@ -49,9 +48,7 @@ class ModalConfirm extends Component {
   }
 
   render() {
-    console.log('came to render')
     const {isModalConfirmation, actionToConfirm, handleItemDelete, handleShipmentSend, handleShipmentDelete, currentItem} = this.props;
-    console.log(actionToConfirm==='Delete', isModalConfirmation)
     if (isModalConfirmation && actionToConfirm==='Delete' && currentItem) {
       return this.renderModalConfirmation(handleItemDelete);
     } else if (isModalConfirmation && actionToConfirm==='Delete' && !currentItem) {
