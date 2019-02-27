@@ -15,16 +15,10 @@ class Item extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-
-  }
-};
-
 const mapDispatchToProps = (dispatch) => {
   return {
     selectItem: (item) => {dispatch({type: 'ITEM_SELECTED', currentItem: item, actionToConfirm: 'Delete'})}
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Item);
+export default connect(null, mapDispatchToProps)(Item);

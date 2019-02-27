@@ -15,6 +15,7 @@ export const validateForm = (typeValue, typeToCreate) => {
   }
 }
 
+// In case item names should be unique:
 // const checkItemNames = (currentShipment, typeValue) => {
 //   for (let item of currentShipment) {
 //     if (item.code === typeValue) {
@@ -68,6 +69,7 @@ export const createShipment = (name) => {
       })
     })
     .then(() => {
+      dispatch({type: 'SHIPMENT_SELECTED', currentShipment: {id: id, name: name, items: []}});
       dispatch({type: 'MODAL_FORM_CLOSED'});
       dispatch(fetchShipments());
     })
@@ -147,15 +149,9 @@ export const sendShipment = () => {
   }
 }
 
-
 const fetchShipmentsStart = () => ({
   type: 'FETCH_SHIPMENTS_START'
 });
-
-// const fetchShipmentsSuccess = () => ({
-//   type: 'FETCH_SHIPMENTS_SUCCESS',
-
-// });
 
 export const deleteShipment = () => {
   return (dispatch, getState) => {

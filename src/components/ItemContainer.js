@@ -6,7 +6,6 @@ import {openModalFormItem} from '../actions/shipmentActions';
 class ItemContainer extends Component {
 
   render() {
-
     let list;
     const { currentShipment, shipments, currentShipmentItems, openModalFormItem, selectItemToSend, selectItemToDelete, inProgress } = this.props;
 
@@ -45,14 +44,6 @@ class ItemContainer extends Component {
           { inProgress
             ?  <h2>Loading...</h2>
             : list }
-
-
-          {/* {isEmpty
-            ? (isFetching ? <h2>Loading...</h2> : <h2>Empty.</h2>)
-            : <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-                <Posts posts={posts} />
-              </div>
-          } */}
 
           </ul>
           <div className="items-buttons-container">
