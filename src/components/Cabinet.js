@@ -23,12 +23,12 @@ class Cabinet extends Component {
         <SideBar/>
         <ItemContainer/>
         {isModal && (
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<div className='fallback-loading'>Loading...</div>}>
             <ModalForm/>
           </Suspense>
         )}
         {isModalConfirmation && (
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<div className='fallback-loading'>Loading...</div>}>
             <ModalConfirm/>
           </Suspense>
         )}

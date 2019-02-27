@@ -30,7 +30,7 @@ class ModalConfirm extends Component {
     const { currentItem, currentShipment, handleCloseForm, actionToConfirm } = this.props;
       return (
         <div className='modal-container'>
-          <div className="form-container">
+          <div className="form-container confirm-container">
             <div className="login-header">
               <h1>{actionToConfirm} {(actionToConfirm==='Delete' && currentItem) ? currentItem.code : currentShipment.name}?</h1>
             </div>
