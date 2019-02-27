@@ -39,7 +39,7 @@ const shipmentReducer = (state=initState, action) => {
     case 'ERROR_MESSAGE_SHOWN':
       return {...state, errorMessage: action.errorMessage};
 
-    case 'CURRENT_SHIPMENT_SENT':
+    case 'CURRENT_SHIPMENT_SENT/DELETED':
       return {...state, currentShipment: null, currentShipmentItems: []};
 
     case 'SHIPMENT_SELECTED':

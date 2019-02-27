@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {deleteItemFromShipment, sendShipment} from '../actions/shipmentActions';
+import {deleteItemFromShipment, sendShipment, deleteShipment} from '../actions/shipmentActions';
 
 class ModalConfirm extends Component {
 
@@ -26,12 +26,12 @@ class ModalConfirm extends Component {
 
   renderModalConfirmation(handlerFunction) {
     console.log('are we here?')
-    const { currentItem, currentShipment, handleCloseForm,actionToConfirm } = this.props;
+    const { currentItem, currentShipment, handleCloseForm, actionToConfirm } = this.props;
       return (
         <div className='modal-container'>
           <div className="form-container">
             <div className="login-header">
-              <h1>{actionToConfirm} {actionToConfirm==='Delete' ? currentItem.code : currentShipment.name}?</h1>
+              <h1>{actionToConfirm} {(actionToConfirm==='Delete' && currentItem) ? currentItem.code : currentShipment.name}?</h1>
             </div>
             <div className="flex-button-container">
               <button
@@ -50,10 +50,12 @@ class ModalConfirm extends Component {
 
   render() {
     console.log('came to render')
-    const {isModalConfirmation, actionToConfirm, handleItemDelete, handleShipmentSend} = this.props;
+    const {isModalConfirmation, actionToConfirm, handleItemDelete, handleShipmentSend, handleShipmentDelete, currentItem} = this.props;
     console.log(actionToConfirm==='Delete', isModalConfirmation)
-    if (isModalConfirmation && actionToConfirm==='Delete') {
+    if (isModalConfirmation && actionToConfirm==='Delete' && currentItem) {
       return this.renderModalConfirmation(handleItemDelete);
+    } else if (isModalConfirmation && actionToConfirm==='Delete' && !currentItem) {
+      return this.renderModalConfirmation(handleShipmentDelete);
     } else if (isModalConfirmation && actionToConfirm==='Send') {
       return this.renderModalConfirmation(handleShipmentSend);
     }
@@ -73,6 +75,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     handleCloseForm: () => {dispatch({type: 'MODAL_CONFIRMATION_FORM_CLOSED'})},
     handleItemDelete: () => {dispatch(deleteItemFromShipment())},
+    handleShipmentDelete: () => {dispatch(deleteShipment())},
     handleShipmentSend: () => {dispatch(sendShipment())}
   }
 };

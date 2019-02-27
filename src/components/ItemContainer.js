@@ -6,8 +6,9 @@ import {openModalFormItem} from '../actions/shipmentActions';
 class ItemContainer extends Component {
 
   render() {
-    const { currentShipment, shipments, currentShipmentItems, openModalFormItem, selectItem, inProgress } = this.props;
-    let list = null;
+
+    let list;
+    const { currentShipment, shipments, currentShipmentItems, openModalFormItem, selectItemToSend, selectItemToDelete, inProgress } = this.props;
 
     if (!shipments.length) {
       list = (
@@ -62,10 +63,17 @@ class ItemContainer extends Component {
               ADD ITEM
             </button>
             <button 
+              className="submit-button wide-button item-button shipment-delete-button"
+              type='button'
+              disabled={currentShipment ? false : true}
+              onClick={() => selectItemToDelete()}>
+              DELETE SHIPMENT
+            </button>
+            <button 
               className="submit-button wide-button item-button"
               type='button'
               disabled={currentShipmentItems.length ? false : true}
-              onClick={() => selectItem()}>
+              onClick={() => selectItemToSend()}>
               SEND SHIPMENT
             </button>
         </div>       
@@ -87,7 +95,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     openModalFormItem: () => {dispatch(openModalFormItem())},
-    selectItem: () => {dispatch({type: 'ITEM_SELECTED', currentItem: null, actionToConfirm: 'Send'})}
+    selectItemToSend: () => {dispatch({type: 'ITEM_SELECTED', currentItem: null, actionToConfirm: 'Send'})},
+    selectItemToDelete: () => {dispatch({type: 'ITEM_SELECTED', currentItem: null, actionToConfirm: 'Delete'})}
   }
 };
 

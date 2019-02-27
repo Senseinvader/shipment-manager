@@ -147,6 +147,7 @@ export const sendShipment = () => {
   }
 }
 
+
 const fetchShipmentsStart = () => ({
   type: 'FETCH_SHIPMENTS_START'
 });
@@ -155,6 +156,26 @@ const fetchShipmentsStart = () => ({
 //   type: 'FETCH_SHIPMENTS_SUCCESS',
 
 // });
+
+export const deleteShipment = () => {
+  return (dispatch, getState) => {
+    let shipmentId = getState().shipmentReducer.currentShipment.id;
+    fetch(`https://api.shipments.test-y-sbm.com/shipment/${shipmentId}`, {
+      method: 'DELETE',
+      headers: new Headers(
+        {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ' + getState().loginReducer.token})
+    })
+    .then(() => {
+      dispatch({type: 'MODAL_CONFIRMATION_FORM_CLOSED'});
+      dispatch({type: 'CURRENT_SHIPMENT_SENT/DELETED'});
+      dispatch(fetchShipments());
+    })
+    .catch(err => console.log(err.message));
+  }
+}
 
 export const openModalFormShipment = () => ({
   type: 'MODAL_CREATION_FORM_CALLED',
@@ -174,6 +195,11 @@ export const openModalConfirmSendShipment = () => ({
 });
 
 export const openModalConfirmDeleteItem = () => ({
+  type: 'MODAL_CONFIRMATION_FORM_CALLED',
+  actionToConfirm: 'Delete'
+});
+
+export const openModalConfirmDeleteShipment = () => ({
   type: 'MODAL_CONFIRMATION_FORM_CALLED',
   actionToConfirm: 'Delete'
 });
